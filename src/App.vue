@@ -13,9 +13,6 @@ export default {
 
 </script>
 <style>
-.add-button {
-  margin-bottom: 15px;
-}
 .pagination {
   margin-top: 15px;
 }

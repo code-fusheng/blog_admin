@@ -14,48 +14,32 @@
 
     <!-- 列表 -->
     <el-table :data="page.list" border style="width: 100%" @sort-change="changeSort">
-      <el-table-column prop="aboutId" label="变高" />
-      <el-table-column prop="aboutTitle" label="标题" width="200" show-overflow-tooltip />
-      <el-table-column prop="aboutRead" label="阅读数" sortable="custom" />
-      <el-table-column prop="createdTime" label="创建时间" sortable="custom" />
-      <el-table-column prop="updateTime" label="修改时间" sortable="custom" />
-      <el-table-column prop="enable" label="启用">
+
+      <el-table-column type="index" label="#" align="center" />
+      <el-table-column prop="aboutTitle" label="标题" width="200" align="center" show-overflow-tooltip />
+      <el-table-column prop="aboutRead" label="阅读数" width="100" sortable="custom" align="center" />
+      <el-table-column prop="createdTime" label="创建时间" width="200" sortable="custom" align="center" />
+      <el-table-column prop="updateTime" label="修改时间" width="200" sortable="custom" align="center" />
+      <el-table-column prop="enable" label="状态" width="90" align="center">
         <template slot-scope="scope">
           <el-tag v-if="scope.row.enable === 1">启用</el-tag>
           <el-tag v-else type="info">未启用</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="350" align="center">
         <template slot-scope="scope">
-          <el-dropdown>
-            <el-button type="primary" size="mini">
-              操作
-              <i class="el-icon-arrow-down el-icon--right" />
-            </el-button>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>
-                <el-button size="mini" type="primary" @click="handleEdit(scope.row.aboutId)">编辑</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button size="mini" type="primary" @click="toRead(scope.row.aboutId)">查看</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button v-if="scope.row.enable === 0" size="mini" type="success" @click="toEnable(scope.row.aboutId)">启用</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button v-if="scope.row.enable === 1" size="mini" type="warning" @click="toDisable(scope.row.aboutId)">弃用</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button size="mini" type="danger" @click="handleDelete(scope.row.aboutId)">删除</el-button>
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+          <el-button size="mini" type="primary" @click="handleEdit(scope.row.aboutId)">编辑</el-button>
+          <el-button size="mini" type="primary" @click="toRead(scope.row.aboutId)">查看</el-button>
+          <el-button v-if="scope.row.enable === 0" size="mini" type="success" @click="toEnable(scope.row.aboutId)">启用</el-button>
+          <el-button v-if="scope.row.enable === 1" size="mini" type="warning" @click="toDisable(scope.row.aboutId)">弃用</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row.aboutId)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <!-- 分页 -->
     <el-pagination
+      align="center"
       class="pagination"
       :current-page="page.currentPage"
       :page-sizes="[10,20,50,100]"
@@ -100,7 +84,7 @@ export default {
         totalCount: 0, // 总条数
         params: {}, // 查询参数对象
         list: [], // 数据
-        sortColumn: '', // 排序列
+        sortColumn: 'createdTime', // 排序列
         sortMethod: 'asc' // 排序方式
       },
       about: {},
@@ -129,6 +113,7 @@ export default {
         this.page.sortColumn = ''
         this.page.sortMethod = 'asc'
       }
+      this.$message.success('操作成功!')
       this.getByPage()
     },
     toEnable(id) {

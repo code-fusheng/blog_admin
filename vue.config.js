@@ -6,6 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
+// 配置标题
 const name = defaultSettings.title || 'Code_fusheng 个人博客后台' // page title
 
 // If your port is set to 80,
@@ -13,6 +14,7 @@ const name = defaultSettings.title || 'Code_fusheng 个人博客后台' // page 
 // For example, Mac: sudo npm run
 // You can change the port by the following methods:
 // port = 9528 npm run dev OR npm run dev --port = 9528
+// 启动端口
 const port = 8002 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
@@ -36,6 +38,7 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    // 配置代理
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
         target: `http://127.0.0.1:8001`,

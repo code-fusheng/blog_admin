@@ -4,27 +4,15 @@
 
     <!-- 列表 -->
     <el-table :data="linkList" border style="width: 100%">
-      <el-table-column prop="linkId" label="编号" />
-      <el-table-column prop="linkName" label="分类" />
-      <el-table-column prop="linkUrl" label="链接地址" />
-      <el-table-column prop="createdTime" label="创建时间" />
-      <el-table-column prop="updateTime" label="修改时间" />
-      <el-table-column label="操作">
+      <el-table-column prop="linkId" label="#" width="60" align="center" />
+      <el-table-column prop="linkName" label="链接名" width="200" align="center" />
+      <el-table-column prop="linkUrl" label="链接地址" width="300" align="center" />
+      <el-table-column prop="createdTime" label="创建时间" width="200" align="center" />
+      <el-table-column prop="updateTime" label="修改时间" width="200" align="center" />
+      <el-table-column label="操作" align="center">
         <template slot-scope="scope">
-          <el-dropdown>
-            <el-button link="primary" size="mini">
-              操作
-              <i class="el-icon-arrow-down el-icon--right" />
-            </el-button>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>
-                <el-button size="mini" type="primary" @click="handleEdit(scope.row.linkId)">编辑</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button size="mini" type="danger" @click="handleDelete(scope.row.linkId)">删除</el-button>
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+          <el-button size="mini" type="primary" @click="handleEdit(scope.row.linkId)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row.linkId)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

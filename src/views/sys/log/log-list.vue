@@ -40,26 +40,40 @@
     >
       <el-table-column
         type="selection"
-        width="55"
+        align="center"
+        width="45"
       />
-      <el-table-column prop="logId" label="编号" />
-      <el-table-column prop="logUrl" label="请求地址" sortable="custom" />
-      <el-table-column prop="logParams" label="参数" width="200" show-overflow-tooltip />
-      <el-table-column prop="logStatus" label="请求状态" sortable="custom">
+      <el-table-column prop="logId" fixed="left" label="#" width="60" align="center" />
+      <el-table-column prop="logUrl" label="请求地址" align="center" width="160" show-overflow-tooltip sortable="custom" />
+      <el-table-column prop="logParams" label="参数" align="center" width="200" show-overflow-tooltip />
+      <el-table-column prop="logStatus" label="请求状态" align="center" width="110" sortable="custom">
+        <!-- scope 为作用域插槽 scope.row 为当前列的对象信息 -->
         <template slot-scope="scope">
+          <!-- v-if / v-else 用于条件判断 -->
           <el-tag v-if="scope.row.logStatus === 1" type="success">正常</el-tag>
           <el-tag v-else type="danger">异常</el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="logMethod" label="请求方式" sortable="custom" />
-      <el-table-column prop="logTime" label="响应时间（毫秒）" sortable="custom" />
-      <el-table-column prop="logIp" label="请求ip" />
-      <el-table-column prop="logResult" label="返回值" width="200" show-overflow-tooltip />
-      <el-table-column prop="createdTime" label="创建时间" sortable="custom" />
+      <el-table-column prop="logMethod" label="请求方式" width="110" align="center" sortable="custom" />
+      <el-table-column prop="logTime" label="响应时间(毫秒)" width="160" align="center" sortable="custom" />
+      <el-table-column prop="logIp" label="请求ip" align="center" width="150" />
+      <el-table-column prop="logResult" label="返回值" width="200" align="center" show-overflow-tooltip />
+      <el-table-column prop="createdTime" label="创建时间" width="200" align="center" sortable="custom" />
     </el-table>
 
-    <!-- 分页 -->
+    <!--
+      分页组件-最完整版
+      class : 分页组件
+      current-page : 当前页 此处为动态绑定page对象的currentPage属性
+      page-sizes : 每页显示个数选择器的选项设置
+      page-size : 每页大小
+      layout : 组件布局
+      total : 总条目数 此处动态绑定page对象的totalCount属性
+      @size-change="handleSizeChange"  pageSize 改变时会触发  参数:每页条数
+      @current-change="handleCurrentChange" currentPage 改变时会触发 参数:当前页
+     -->
     <el-pagination
+      align="center"
       class="pagination"
       :current-page="page.currentPage"
       :page-sizes="[10,20,50,100]"

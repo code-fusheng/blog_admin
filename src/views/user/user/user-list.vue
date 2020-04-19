@@ -38,17 +38,18 @@
     >
       <el-table-column
         type="selection"
-        width="55"
+        width="45"
+        align="center"
       />
-      <el-table-column prop="userId" label="用户编号" />
-      <el-table-column prop="username" label="账号" />
-      <el-table-column prop="sex" label="性别" width="70" sortable="custom">
+      <el-table-column prop="userId" fixed="left" label="#" width="60" align="center" />
+      <el-table-column prop="username" label="账号" align="center" />
+      <el-table-column prop="sex" label="性别" width="80" align="center">
         <template slot-scope="scope">
           <el-tag v-if="scope.row.sex === 1" type="success">男</el-tag>
           <el-tag v-else type="danger">女</el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="header" label="头像" width="120">
+      <el-table-column prop="header" label="头像" width="120" align="center">
         <template slot-scope="scope">
           <el-image
             style="width: 100%;height: 100px"
@@ -57,12 +58,12 @@
           />
         </template>
       </el-table-column>
-      <el-table-column prop="name" label="姓名" />
-      <el-table-column prop="nickname" label="昵称" />
-      <el-table-column prop="userEmail" label="邮箱" />
-      <el-table-column prop="createdTime" label="创建时间" sortable="custom" />
-      <el-table-column prop="updateTime" label="修改时间" sortable="custom" />
-      <el-table-column label="操作">
+      <el-table-column prop="name" label="姓名" align="center" />
+      <el-table-column prop="nickname" label="昵称" align="center" />
+      <el-table-column prop="userEmail" label="邮箱" align="center" width="160" />
+      <el-table-column prop="createdTime" label="创建时间" width="180" align="center" sortable="custom" />
+      <el-table-column prop="updateTime" label="更新时间" width="180" align="center" sortable="custom" />
+      <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-dropdown>
             <el-button type="primary" size="mini">
@@ -85,6 +86,7 @@
     <!-- 分页 -->
     <el-pagination
       class="pagination"
+      align="center"
       :current-page="page.currentPage"
       :page-sizes="[10,20,50,100]"
       :page-size="page.pageSize"

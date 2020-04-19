@@ -1,3 +1,4 @@
+// 构建打包配置
 const { run } = require('runjs')
 const chalk = require('chalk')
 const config = require('../vue.config.js')

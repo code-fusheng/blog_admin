@@ -19,26 +19,27 @@
 
     <!-- 列表 -->
     <el-table :data="page.list" border style="width: 100%" @sort-change="changeSort">
-      <el-table-column prop="blogTitle" label="标题" width="200" show-overflow-tooltip />
-      <el-table-column prop="typeName" label="分类" sortable="custom" />
-      <el-table-column prop="blogImage" label="图片" width="120">
-        <template slot-scope="scope">
+      <el-table-column type="index" fixed="left" label="#" width="60" align="center" />
+      <el-table-column prop="blogTitle" label="标题" width="200" align="center" show-overflow-tooltip />
+      <el-table-column prop="typeName" label="分类" width="120" align="center" sortable="custom" />
+      <el-table-column prop="blogImage" label="图片" align="center" width="120">
+        <!-- <template slot-scope="scope">
           <el-image
             style="width: 100%;height: 100px"
             :src="scope.row.blogImage"
             :preview-src-list="[scope.row.blogImage]"
           />
-        </template>
+        </template> -->
       </el-table-column>
-      <el-table-column prop="blogGoods" label="点赞数" width="50" sortable="custom" />
-      <el-table-column prop="blogRead" label="阅读数" width="50" sortable="custom" />
-      <el-table-column prop="blogCollection" label="收藏数" width="50" sortable="custom" />
-      <el-table-column prop="blogComment" label="评论数" width="50" sortable="custom" />
-      <el-table-column prop="blogSource" label="文章来源" />
-      <el-table-column prop="createdTime" label="创建时间" sortable="custom" />
-      <el-table-column prop="updateTime" label="修改时间" sortable="custom" />
-      <el-table-column prop="blogRemark" label="备注" width="200" show-overflow-tooltip />
-      <el-table-column label="操作">
+      <el-table-column prop="blogGoods" label="点赞数" width="100" align="center" sortable="custom" />
+      <el-table-column prop="blogRead" label="阅读数" width="100" align="center" sortable="custom" />
+      <el-table-column prop="blogCollection" label="收藏数" width="100" align="center" sortable="custom" />
+      <el-table-column prop="blogComment" label="评论数" width="100" align="center" sortable="custom" />
+      <!-- <el-table-column prop="blogSource" label="文章来源" /> -->
+      <el-table-column prop="createdTime" label="创建时间" width="200" sortable="custom" align="center" />
+      <el-table-column prop="updateTime" label="修改时间" width="200" sortable="custom" align="center" />
+      <el-table-column prop="blogRemark" label="备注" width="200" show-overflow-tooltip align="center" />
+      <el-table-column label="操作" fixed="right" width="120" align="center">
         <template slot-scope="scope">
           <el-dropdown>
             <el-button type="primary" size="mini">
@@ -63,6 +64,7 @@
 
     <!-- 分页 -->
     <el-pagination
+      align="center"
       class="pagination"
       :current-page="page.currentPage"
       :page-sizes="[10,20,50,100]"

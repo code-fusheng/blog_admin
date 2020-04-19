@@ -25,10 +25,10 @@
     </div>
     <!-- 列表 -->
     <el-table :data="page.list" border style="width: 100%" @sort-change="changeSort">
-      <el-table-column prop="id" label="编号" />
-      <el-table-column prop="name" label="歌曲名" width="200" show-overflow-tooltip />
-      <el-table-column prop="artist" label="歌手" sortable="custom" />
-      <el-table-column prop="cover" label="图片" width="120">
+      <el-table-column prop="id" label="#" fixed="left" width="60" align="center" />
+      <el-table-column prop="name" label="歌曲名" align="center" width="200" show-overflow-tooltip />
+      <el-table-column prop="artist" label="歌手" width="120" sortable="custom" align="center" />
+      <el-table-column prop="cover" label="图片" width="120" align="center">
         <template slot-scope="scope">
           <el-image
             style="width: 100%;height: 100px"
@@ -37,48 +37,28 @@
           />
         </template>
       </el-table-column>
-      <el-table-column prop="createdTime" label="创建时间" sortable="custom" />
-      <el-table-column prop="enabled" label="启用" sortable="custom">
+      <el-table-column prop="createdTime" label="创建时间" width="180" sortable="custom" align="center" />
+      <el-table-column prop="enabled" label="状态" sortable="custom" align="center" width="80">
         <template slot-scope="scope">
           <el-tag v-if="scope.row.enabled === 1">启用</el-tag>
           <el-tag v-else type="info">未启用</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="410" align="center">
         <template slot-scope="scope">
-          <el-dropdown>
-            <el-button type="primary" size="mini">
-              操作
-              <i class="el-icon-arrow-down el-icon--right" />
-            </el-button>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>
-                <el-button size="mini" type="primary" @click="handleEdit(scope.row.id)">编辑</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button size="mini" type="primary" @click="readLrc(scope.row.id)">查看歌词</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button size="mini" type="primary" @click="toHear(scope.row.url)">试听</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button v-if="scope.row.enabled === 0" size="mini" type="success" @click="toEnable(scope.row.id)">启用</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button v-if="scope.row.enabled === 1" size="mini" type="warning" @click="toDisable(scope.row.id)">弃用</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+          <el-button size="mini" type="primary" @click="handleEdit(scope.row.id)">编辑</el-button>
+          <el-button size="mini" type="primary" @click="readLrc(scope.row.id)">查看歌词</el-button>
+          <el-button size="mini" type="primary" @click="toHear(scope.row.url)">试听</el-button>
+          <el-button v-if="scope.row.enabled === 0" size="mini" type="success" @click="toEnable(scope.row.id)">启用</el-button>
+          <el-button v-if="scope.row.enabled === 1" size="mini" type="warning" @click="toDisable(scope.row.id)">弃用</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
-
     <!-- 分页 -->
     <el-pagination
       class="pagination"
+      align="center"
       :current-page="page.currentPage"
       :page-sizes="[10,20,50,100]"
       :page-size="page.pageSize"

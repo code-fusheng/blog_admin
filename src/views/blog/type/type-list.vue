@@ -4,37 +4,23 @@
 
     <!-- 列表 -->
     <el-table :data="typeList" border style="width: 100%">
-      <el-table-column prop="typeId" label="编号" />
-      <el-table-column prop="typeName" label="分类" />
-      <el-table-column prop="typeBlogCount" label="博客数" />
-      <el-table-column prop="enable" label="启用">
+      <el-table-column type="index" fixed="left" label="#" width="60" align="center" />
+      <el-table-column prop="typeName" label="分类" width="200" align="center" />
+      <el-table-column prop="typeBlogCount" label="博客数" width="100" align="center" />
+      <el-table-column prop="" label="创建时间" width="180" align="center" sortable="custom" />
+      <el-table-column prop="" label="更新时间" width="180" align="center" sortable="custom" />
+      <el-table-column prop="enable" label="启用" width="80">
         <template slot-scope="scope">
           <el-tag v-if="scope.row.enable === 1">启用</el-tag>
           <el-tag v-else type="info">未启用</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="360" align="center">
         <template slot-scope="scope">
-          <el-dropdown>
-            <el-button type="primary" size="mini">
-              操作
-              <i class="el-icon-arrow-down el-icon--right" />
-            </el-button>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>
-                <el-button size="mini" type="primary" @click="handleEdit(scope.row.typeId)">编辑</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button v-if="scope.row.enable === 0" size="mini" type="success" @click="toEnable(scope.row.typeId)">启用</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button v-if="scope.row.enable === 1" size="mini" type="warning" @click="toDisable(scope.row.typeId)">弃用</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button size="mini" type="danger" @click="handleDelete(scope.row.typeId)">删除</el-button>
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+          <el-button size="mini" type="primary" @click="handleEdit(scope.row.typeId)">编辑</el-button>
+          <el-button v-if="scope.row.enable === 0" size="mini" type="success" @click="toEnable(scope.row.typeId)">启用</el-button>
+          <el-button v-if="scope.row.enable === 1" size="mini" type="warning" @click="toDisable(scope.row.typeId)">弃用</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row.typeId)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
